@@ -2,8 +2,6 @@
 
 A ready-made Linux desktop for DFT that runs in your web browser. Works on Mac, Windows and Linux.
 
-**Download:** [tiny.cc/qe2027](https://tiny.cc/qe2027)
-
 ## What's installed
 - Quantum ESPRESSO 7.6 (full)
 - PWTK 3.2
@@ -16,6 +14,7 @@ A ready-made Linux desktop for DFT that runs in your web browser. Works on Mac, 
 ## You need
 - 8 GB RAM or more
 - 10 GB free disk space
+- Internet for the first start (about 1.6 GB download)
 - Permission to install apps on your laptop
 
 ---
@@ -60,83 +59,93 @@ If it asks to update WSL: open **Command Prompt**, type `wsl --update`, press En
 
 ## Step 2: Download QE2027
 
-Open [tiny.cc/qe2027](https://tiny.cc/qe2027) and download **one** file:
+Download the file for your computer:
 
-| Your computer | Download |
-|---|---|
-| Mac with Apple chip (M1, M2, M3, M4) | `QE2027_AppleChip_ARM.zip` |
-| Windows, Linux, or Mac with Intel chip | `QE2027_Intel_AMD.zip` |
+- **Mac:** [QE2027_Mac.zip](https://github.com/sairajdream/qe2027/releases/latest/download/QE2027_Mac.zip)
+- **Windows:** [QE2027_Windows.zip](https://github.com/sairajdream/qe2027/releases/latest/download/QE2027_Windows.zip)
+- **Linux:** [QE2027_Linux.zip](https://github.com/sairajdream/qe2027/releases/latest/download/QE2027_Linux.zip)
 
-Not sure? On a Mac: Apple menu  > **About This Mac**. "Chip: Apple M..." means Apple chip.
-
-If Google Drive says it can't scan the file for viruses, click **Download anyway**.
-
-## Step 3: Unzip
-
+Unzip it:
 - **Mac:** double-click the zip.
 - **Windows:** right-click the zip > **Extract All** > **Extract**.
 - **Linux:** right-click the zip > **Extract Here**.
 
-You now have a **QE2027** folder. Keep all files in it together.
+You get one file: **QE2027**. Move it anywhere you like, for example to your Desktop.
 
-## Step 4: Start
+## Step 3: Start
 
-Make sure Docker is open first. The first start takes 1 to 3 minutes. Your browser then opens the desktop at **http://localhost:6080**.
+Make sure Docker is open first.
 
 <details>
 <summary><b>Mac</b></summary>
 
-1. Double-click **Start QE2027.command**.
+1. Double-click **QE2027.command**.
 2. First time only, macOS blocks it:
    - Click **Done**.
    - Open **System Settings > Privacy & Security**.
    - Scroll down and click **Open Anyway**.
-   - Double-click **Start QE2027.command** again.
+   - Double-click **QE2027.command** again.
+3. Press **Enter** to start.
 
 </details>
 
 <details>
 <summary><b>Windows</b></summary>
 
-1. Double-click **Start QE2027.bat**.
+1. Double-click **QE2027.bat**.
 2. First time only, if Windows says *"Windows protected your PC"*: click **More info** > **Run anyway**.
+3. Press **Enter** to start.
 
 </details>
 
 <details>
 <summary><b>Linux</b></summary>
 
-In a terminal, inside the QE2027 folder:
-```bash
-bash start_qe2027.sh
-```
+1. In a terminal, in the folder with the file, run: `bash qe2027.sh`
+2. Press **Enter** to start.
 
 </details>
 
-## Step 5: Stop
+The first start downloads QE2027 (10 to 20 minutes, one time only). After that it starts in seconds.
 
-- **Mac:** double-click **Stop QE2027.command**
-- **Windows:** double-click **Stop QE2027.bat**
-- **Linux:** `bash start_qe2027.sh stop`
+Your browser opens the desktop at **http://localhost:6080**.
 
-Closing the browser does not stop QE2027. Open http://localhost:6080 to go back.
+## Step 4: Stop
+
+Open **QE2027** again, type **2** and press Enter.
+
+Everything is kept for next time. Closing the browser does not stop QE2027; open http://localhost:6080 to go back.
 
 ---
 
-## Save your work
+## The menu
 
-Always save in **My Work Folder** (desktop icon). Anything saved elsewhere is lost when you stop.
+Every time you open QE2027 you get this menu:
 
-My Work Folder is the **dft_work** folder on your own computer:
+| | What it does |
+|---|---|
+| **1 Start** | Starts QE2027, or continues where you left off |
+| **2 Stop** | Pauses QE2027. Nothing is lost |
+| **3 Update** | Gets the latest version (when the instructor asks you to) |
+| **4 Reset** | Gives you a fresh system if something is broken |
+
+Update and Reset keep your **dft_work** files, GitHub login and keys. Apps you installed yourself need to be installed again.
+
+## Your files
+
+Save your work in **My Work Folder** (desktop icon). It is the **dft_work** folder on your own computer:
 - Mac: `/Users/<your name>/dft_work`
 - Windows: `C:\Users\<your name>\dft_work`
 - Linux: `/home/<your name>/dft_work`
+
+You can open these files with your normal apps too. They are never deleted, even by Update or Reset.
 
 ## Quick tips
 
 - Run QE in the Terminal: `mpirun -np 2 pw.x -in scf.in > scf.out`
 - QE examples and pseudopotentials: `~/espresso`
 - PWTK examples: `~/pwtk`
+- Install more apps: `sudo apt update` then `sudo apt install <name>`, or `pip install <name>`.
 - Copy and paste with your computer: small tab on the left edge of the browser > **Clipboard**.
 - **GitHub Sync** (desktop icon) backs up your work to your GitHub account. Follow the steps it shows.
 
@@ -146,24 +155,23 @@ My Work Folder is the **dft_work** folder on your own computer:
 |---|---|
 | "Docker is not installed" | Do Step 1. |
 | "Docker didn't start" | Open Docker and wait until it's ready, then Start again. |
-| "Wrong download for your computer" | Download the other zip (Step 2). |
-| "Can't find ...tar.gz" | Windows: use **Extract All** (Step 3). |
+| "Download failed" | Check your internet and Start again. It continues where it stopped. |
 | Browser says "can't connect" | Wait 10 seconds and reload. |
 | Grey screen or "Disconnected" | Reload the page. |
 | Calculation very slow or killed | Use `mpirun -np 1` and close other apps. |
+| Something is broken | Use **4 Reset** in the menu. |
 
 Still stuck? Send the instructor a screenshot.
 
-## Update or remove
+## Remove QE2027
 
-- **Update:** download the new zip and Start it. Your files and settings are kept.
-- **Remove:** stop QE2027, then run:
-  ```bash
-  docker rm -f qe2027
-  docker rmi qe2027:1.0
-  docker volume rm qe2027-persist
-  ```
-  Your dft_work folder is not deleted.
+Stop QE2027, then run in Terminal (Mac, Linux) or Command Prompt (Windows):
+```bash
+docker rm -f qe2027
+docker rmi ghcr.io/sairajdream/qe2027:latest
+docker volume rm qe2027-persist
+```
+Your dft_work folder is not deleted.
 
 ---
-Instructor: Sai Raj Ali
+Instructor: Dr Sai Raj Ali
