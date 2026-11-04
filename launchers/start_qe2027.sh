@@ -64,6 +64,10 @@ if ! docker image inspect "$IMAGE" >/dev/null 2>&1; then
 fi
 
 mkdir -p "$WORK"
+# Linux: QE2027 writes as user 1000; if you're a different user, let both of you read and write the folder
+if [ "$(uname)" = "Linux" ] && [ "$(id -u)" != 1000 ] && command -v setfacl >/dev/null 2>&1; then
+    setfacl -m "u:1000:rwx,u:$(id -u):rwx" -d -m "u:1000:rwx,u:$(id -u):rwx" "$WORK" 2>/dev/null || true
+fi
 
 # Start the container unless it's already running this version (an older version gets replaced)
 if [ "$(docker inspect -f '{{.State.Running}} {{.Config.Image}}' "$NAME" 2>/dev/null)" != "true $IMAGE" ]; then

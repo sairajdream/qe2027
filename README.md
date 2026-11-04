@@ -191,7 +191,7 @@ When you're done for the day, stop QE2027 and you can also quit Docker Desktop t
 | Windows: "Windows protected your PC" | Click **More info** → **Run anyway**. |
 | Windows: "Virtualization support not detected" / WSL errors | See the notes under [Windows](#windows). |
 | Linux: "permission denied … docker.sock" | Run `sudo usermod -aG docker $USER`, then log out and back in. |
-| Linux: can't save files in My Work Folder | Your Linux user ID isn't 1000 (check with `id -u`). Run `sudo chown -R 1000 ~/dft_work`. |
+| Linux: can't save files in My Work Folder | Install the `acl` package (`sudo apt install acl`), then Stop and Start again. |
 | Browser says "can't connect" | Wait 10 seconds and reload. If it still fails, Stop and then Start again. |
 | Grey screen or "Disconnected" | Reload the browser page. |
 | A calculation is killed or very slow | Use fewer cores (`mpirun -np 1`), close other apps, or give Docker more memory (Docker Desktop → Settings → Resources). |
