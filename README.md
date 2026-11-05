@@ -146,7 +146,12 @@ You can open these files with your normal apps too. They are never deleted, even
 - QE examples and pseudopotentials: `~/espresso`
 - PWTK examples: `~/pwtk`
 - Install more apps: `sudo apt update` then `sudo apt install <name>`, or `pip install <name>`.
-- Copy and paste with your computer: small tab on the left edge of the browser > **Clipboard**.
+- Copy and paste work as usual between your computer and QE2027:
+  - **Mac:** Cmd+C and Cmd+V
+  - **Windows and Linux:** Ctrl+V to paste. In the Terminal, copy with Ctrl+Shift+C.
+  - Chrome or Edge may ask to **see your clipboard** once. Click **Allow** so right-click > Paste works too.
+  - Safari and Firefox: paste with the keyboard (Cmd+V or Ctrl+V). Right-click > Paste does not work there.
+  - A short message at the bottom of the screen shows each copy and paste.
 - **GitHub Sync** (desktop icon) backs up your work to your GitHub account. Follow the steps it shows.
 
 ## Problems?
