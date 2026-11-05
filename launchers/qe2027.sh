@@ -23,6 +23,10 @@ TARBALL="$HERE/qe2027-$ARCH.tar.gz"
 # Docker Desktop puts its `docker` command in /usr/local/bin or ~/.docker/bin depending on an install
 # choice, and a double-clicked script may not have either on PATH; the app always carries its own copy
 export PATH="$PATH:/usr/local/bin:$HOME/.docker/bin:/Applications/Docker.app/Contents/Resources/bin"
+# Mac: always use Docker Desktop, even if another Docker engine (Colima, OrbStack) is the default
+if [ "$(uname)" = "Darwin" ] && [ -z "${DOCKER_HOST:-}" ] && docker context inspect desktop-linux >/dev/null 2>&1; then
+    export DOCKER_CONTEXT=desktop-linux
+fi
 
 die() { echo; echo "$*"; exit 1; }
 
